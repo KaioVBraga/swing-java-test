@@ -1,6 +1,9 @@
 package com.myinterface;
 
 import javax.swing.*;
+
+import com.myinterface.screens.Screen;
+
 import java.awt.*;
 
 public class App {

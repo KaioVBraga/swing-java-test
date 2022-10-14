@@ -1,4 +1,4 @@
-package com.myinterface;
+package com.myinterface.components;
 
 import javax.swing.JLabel;
 

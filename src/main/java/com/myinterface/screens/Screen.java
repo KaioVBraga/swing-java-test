@@ -1,7 +1,11 @@
-package com.myinterface;
+package com.myinterface.screens;
 
 import javax.swing.*;
 import javax.swing.event.*;
+
+import com.myinterface.components.MyButton;
+import com.myinterface.entities.User;
+import com.myinterface.services.UserService;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -53,15 +57,13 @@ public class Screen extends JPanel {
                 System.out.println("Name: " + nameField.getText());
                 System.out.println("Profession: " + professionField.getText());
 
-                try {
-                    PrintWriter out = new PrintWriter("filename.txt");
-                    out.println("Name: " + nameField.getText());
-                    out.println("Profession: " + professionField.getText());
-                    out.close();
+                User user = new User(
+                        nameField.getText(),
+                        nameField.getText(),
+                        nameField.getText(),
+                        nameField.getText());
 
-                } catch (FileNotFoundException e) {
-                    System.out.println("Error not found file");
-                }
+                UserService.create(user);
 
             }
 

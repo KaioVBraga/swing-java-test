@@ -11,16 +11,17 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
 public class JsonManager<T> {
     String filePath;
-    private Class<T> genericClass;
-    private Class<List<T>> genericListClass;
 
     public JsonManager(String filePath) {
         this.filePath = filePath;
     }
 
-    public boolean create(T object) {
+    public boolean create(List<T> object) {
         try {
             Gson gson = new GsonBuilder().create();
             Writer writer = new FileWriter(filePath);
@@ -37,12 +38,30 @@ public class JsonManager<T> {
         }
     }
 
+    public boolean insert(T object) {
+        try {
+            List<T> list = this.findAll();
+
+            list.add(object);
+
+            this.create(list);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public List<T> findAll() {
         try {
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Reader reader = new FileReader(filePath);
 
-            return gson.fromJson(reader, genericListClass);
+            Type listType = new TypeToken<ArrayList<T>>() {
+            }.getType();
+            return gson.fromJson(reader, listType);
         } catch (IOException e) {
             e.printStackTrace();
 

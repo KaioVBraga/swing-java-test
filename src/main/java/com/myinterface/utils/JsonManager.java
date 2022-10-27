@@ -12,9 +12,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.google.gson.reflect.TypeToken;
+import com.myinterface.entities.Auditable;
+
 import java.lang.reflect.Type;
 
-public class JsonManager<T> {
+public class JsonManager<T extends Auditable> {
     String filePath;
 
     public JsonManager(String filePath) {
@@ -66,6 +68,23 @@ public class JsonManager<T> {
             e.printStackTrace();
 
             return new ArrayList<T>();
+        }
+    }
+
+    public T findOne(Long id) {
+        try {
+            List<T> list = this.findAll();
+
+            for (T object : list) {
+                if (object.id == id) {
+                    return object;
+                }
+            }
+
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

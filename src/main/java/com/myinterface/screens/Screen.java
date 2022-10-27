@@ -5,6 +5,7 @@ import javax.swing.event.*;
 
 import com.myinterface.components.MyButton;
 import com.myinterface.entities.User;
+import com.myinterface.models.UserModel;
 import com.myinterface.services.UserService;
 
 import java.awt.*;
@@ -64,6 +65,10 @@ public class Screen extends JPanel {
                         nameField.getText());
 
                 UserService.create(user);
+
+                User otherUser = UserModel.findOne(1L);
+
+                System.out.println("OTHER USER -> " + otherUser);
 
             }
 

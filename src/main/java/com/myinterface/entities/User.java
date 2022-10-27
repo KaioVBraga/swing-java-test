@@ -1,7 +1,6 @@
 package com.myinterface.entities;
 
-public class User {
-   public Long id = null;
+public class User extends Auditable {
    public String name;
    public String userName;
    public String email;

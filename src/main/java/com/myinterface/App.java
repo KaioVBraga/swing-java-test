@@ -26,7 +26,8 @@ public class App {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(new BorderLayout());
                 frame.add(new Screen());
-                frame.pack();
+                // frame.pack();
+                frame.setSize(500, 300);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }

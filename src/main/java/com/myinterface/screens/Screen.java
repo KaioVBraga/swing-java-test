@@ -16,10 +16,16 @@ import java.io.PrintWriter;
 public class Screen extends JPanel {
 
     JLabel nameLabel = new JLabel("Name: ");
-    JTextField nameField = new JTextField(10);
+    JTextField nameField = new JTextField(32);
 
-    JLabel professionLabel = new JLabel("Profession: ");
-    JTextField professionField = new JTextField(10);
+    JLabel userNameLabel = new JLabel("UserName: ");
+    JTextField userNameField = new JTextField(32);
+
+    JLabel emailLabel = new JLabel("Email: ");
+    JTextField emailField = new JTextField(32);
+
+    JLabel passwordLabel = new JLabel("Password: ");
+    JPasswordField passwordField = new JPasswordField(32);
 
     JButton submitButton = new JButton("Click here");
 
@@ -30,39 +36,44 @@ public class Screen extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(2, 2, 2, 2);
+        gbc.insets = new Insets(4, 4, 4, 4);
 
         add(nameLabel, gbc);
 
-        gbc.gridx++;
-
-        add(professionLabel, gbc);
-
-        gbc.gridx = 0;
         gbc.gridy++;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
         add(nameField, gbc);
 
-        gbc.gridx++;
-
-        add(professionField, gbc);
-
-        gbc.gridx = 0;
         gbc.gridy++;
+        add(userNameLabel, gbc);
 
+        gbc.gridy++;
+        add(userNameField, gbc);
+
+        gbc.gridy++;
+        add(emailLabel, gbc);
+
+        gbc.gridy++;
+        add(emailField, gbc);
+
+        gbc.gridy++;
+        add(passwordLabel, gbc);
+
+        gbc.gridy++;
+        add(passwordField, gbc);
         submitButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 System.out.println("Submitting Data");
                 System.out.println("Name: " + nameField.getText());
-                System.out.println("Profession: " + professionField.getText());
+                System.out.println("UserName: " + userNameField.getText());
+                System.out.println("Email: " + emailField.getText());
+                System.out.println("Password: " + passwordField.getText());
 
                 User user = new User(
                         nameField.getText(),
-                        nameField.getText(),
-                        nameField.getText(),
-                        nameField.getText());
+                        userNameField.getText(),
+                        emailField.getText(),
+                        passwordField.getText());
 
                 UserService.create(user);
 
@@ -109,12 +120,8 @@ public class Screen extends JPanel {
             }
         });
 
+        gbc.gridy++;
         add(submitButton, gbc);
-
-        gbc.gridx++;
-        JButton myButton = new MyButton("My Button");
-
-        add(myButton, gbc);
 
     }
 
